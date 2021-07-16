@@ -1,5 +1,5 @@
 import {FC, memo} from "react";
-import { Link, Route, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import SideBar from "../components/SideBar";
 import DashboardPages from "./Dashboard.pages";
 import RecordingsPages from "./Recordings.pages";

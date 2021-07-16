@@ -1,13 +1,8 @@
-import React from 'react';
-import logo from './logo.svg';
+
 import { BrowserRouter, Redirect, Route, Router, Switch } from 'react-router-dom';
-import LoginPages from './pages/Login.pages';
-import SignupPages from './pages/Signup.pages';
-import DashboardPages from './pages/Dashboard.pages';
-import RecordingsPages from './pages/Recordings.pages';
-import AuthHero from './components/AuthHero';
 import AuthPages from './pages/Auth.pages';
 import AppContainerPages from './pages/AppContainer.pages';
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
@@ -22,6 +17,9 @@ function App() {
         </Route>
         <Route path = {["/recordings","/dashboard"]}>
           <AppContainerPages></AppContainerPages>
+        </Route>
+        <Route>
+            <NotFound />
         </Route>
       </Switch>
     </BrowserRouter>
