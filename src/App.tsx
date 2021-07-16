@@ -1,5 +1,5 @@
 
-import { BrowserRouter, Redirect, Route, Router, Switch } from 'react-router-dom';
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import AuthPages from './pages/Auth.pages';
 import AppContainerPages from './pages/AppContainer.pages';
 import NotFound from './pages/NotFound';
