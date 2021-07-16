@@ -8,6 +8,7 @@ const Signup: FC<Props> = (props) =>{
         <div>
             This is Signup page
             Already have an account<Link to = "/login"><span className = "text-blue-500">Click here</span></Link>
+            
         </div>
     );
 };
