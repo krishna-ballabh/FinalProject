@@ -3,8 +3,8 @@ interface Props{}
 
 const AuthHero: FC<Props> = (props) =>{
     return(
-        <div className = "h-screen w-1/2 bg-black text-white">
-           Logo will go here
+        <div className = "md:visible md:w-1/2 h-screen text-white bg-black bg-no-repeat bg-center bg-75% bg-hero-image">
+           
         </div>
     );
 };
