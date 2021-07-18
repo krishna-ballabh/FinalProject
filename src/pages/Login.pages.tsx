@@ -1,42 +1,33 @@
-import  {ChangeEvent, FocusEvent, FC, memo} from "react";
-import { Link } from "react-router-dom";
+import  {FC, memo} from "react";
+import { Link, useHistory } from "react-router-dom";
 import LockClosedIcon from "@heroicons/react/outline/LockClosedIcon";
-import { useState } from "react";
 import { FaSpinner } from "react-icons/fa"
 import { BsPersonFill } from "react-icons/bs";
+import { useFormik } from "formik";
+import * as yup from "yup";
+
 interface Props{}
 
 const Login: FC<Props> = (props) =>{
+  const history = useHistory();
     
-    const [data, setData] =  useState({password:"" , email:" "} );
-    
-    const [touched, setTouched]  = useState({email: false, password:false});
-
-    const[submitting, setSubmitting] = useState(false)
-
-    const handleBlur = (event: ChangeEvent<HTMLInputElement>) => {
-        setTouched({...touched, [event.target.name] : true});
-    }
-
-    const handleChange = (event: FocusEvent<HTMLInputElement>) => {
-        setData({...data, [event.target.name] : event.target.value});
-    }
-    let emailError  = "";
-    let passwordError = "";
-    if(!data.email){
-        emailError = "Email address is required"
-    } 
-    else if(!data.email.endsWith("@gmail.com")){
-        emailError = "Please enter a valid email address"
-    }
-
-    if(!data.password){
-        passwordError = "password is required"
-    }
-    else if(data.password.length < 8){
-        passwordError = "password should be atleast 8 characters";
-    }
-
+   const myForm = useFormik({
+     initialValues :{
+       email: "",
+       password: "",
+     },
+     validationSchema: yup.object().shape({
+        email: yup.string().required().email(),
+        password: yup.string().required().min(8),
+     }),
+     onSubmit: (data) => {
+        console.log("form submitting", data);
+        setTimeout(() =>{
+          console.log("form submitted successfully");
+          history.push("/dashboard");
+        }, 5000);
+     }
+   });
     return(
         <div className="flex justify-center min-h-screen px-4 py-12 sm:w-full md:w-1/2 bg-gray-50 sm:px-6 lg:px-8">
       <div className="w-full max-w-md space-y-8">
@@ -47,18 +38,7 @@ const Login: FC<Props> = (props) =>{
           </p>
         </div>
         <form className="pt-8 space-y-6"
-        
-        
-        onSubmit = {(event) => {;
-        event.preventDefault();
-        if(emailError || passwordError){
-            return ;
-        }
-        setSubmitting(true);
-        setTimeout(() => {setSubmitting(false)},5000)
-        console.log("login with data ", data)
-        
-          }}>
+        onSubmit = {myForm.handleSubmit}>
           <input type="hidden" name="remember" defaultValue="true" />
           <div className="-space-y-px rounded-md shadow-sm">
             <div>
@@ -71,14 +51,15 @@ const Login: FC<Props> = (props) =>{
                 id="email-address"
                 name="email"
                 type="email"
-                onChange = {handleChange}
-                onBlur = {handleBlur}
+                value = {myForm.values.email}
+                onChange = {myForm.handleChange}
+                onBlur = {myForm.handleBlur}
                 autoComplete="email"
                 className="relative inline-block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border rounded-none appearance-none b border-bottom-1z rounded-t-md focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 placeholder="Username"
               />
             </div>
-            {touched.email && <div className = "text-red-600">{emailError}</div>}
+            {myForm.touched.email && <div className = "text-red-600">{myForm.errors.email}</div>}
             <div className = "pt-6">
               <label htmlFor="password" className="sr-only">
                 Password
@@ -90,14 +71,14 @@ const Login: FC<Props> = (props) =>{
                 type="password"
                 autoComplete="current-password"
                 required
-                value = {data.password}
-                onChange = {handleChange}
-                onBlur = {handleBlur}
+                value = {myForm.values.password}
+                onChange = {myForm.handleChange}
+                onBlur = {myForm.handleBlur}
                 className="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 placeholder="Password"
               />
             </div>
-            {touched.password && <div className = "text-red-600">{passwordError}</div>}
+            {myForm.touched.password && <div className = "text-red-600">{myForm.errors.password}</div>}
           </div>
           <div className="flex items-center justify-between">
             <div className="flex items-center">
@@ -129,7 +110,7 @@ const Login: FC<Props> = (props) =>{
               </span>
               Sign in
             </button>
-            {submitting && <FaSpinner className = "mt-5 animate-spin"/>}
+            {myForm.isSubmitting && <FaSpinner className = "mt-5 animate-spin"/>}
           </div>
         </form>
       </div>
