@@ -1,4 +1,4 @@
-import React, {ChangeEvent, FocusEvent, FC, memo} from "react";
+import  {ChangeEvent, FocusEvent, FC, memo} from "react";
 import { Link } from "react-router-dom";
 import LockClosedIcon from "@heroicons/react/outline/LockClosedIcon";
 import { useState } from "react";
@@ -113,9 +113,9 @@ const Login: FC<Props> = (props) =>{
             </div>
 
             <div className="text-sm">
-              <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
+              <button className="font-medium text-indigo-600 hover:text-indigo-500">
                 Forgot your password?
-              </a>
+              </button>
             </div>
           </div>
 
