@@ -2,16 +2,22 @@ import  {FC, memo} from "react";
 import { Link, useHistory } from "react-router-dom";
 import LockClosedIcon from "@heroicons/react/outline/LockClosedIcon";
 import { FaSpinner } from "react-icons/fa"
-import { BsPersonFill } from "react-icons/bs";
 import { useFormik } from "formik";
+import Input from "../components/Input";
 import * as yup from "yup";
 
 interface Props{}
 
 const Login: FC<Props> = (props) =>{
   const history = useHistory();
-    
-   const myForm = useFormik({
+
+  const {
+    handleSubmit,
+    getFieldProps,
+    touched,
+    isSubmitting,
+    errors,
+  } = useFormik({
      initialValues :{
        email: "",
        password: "",
@@ -38,47 +44,33 @@ const Login: FC<Props> = (props) =>{
           </p>
         </div>
         <form className="pt-8 space-y-6"
-        onSubmit = {myForm.handleSubmit}>
+        onSubmit = {handleSubmit}>
           <input type="hidden" name="remember" defaultValue="true" />
           <div className="-space-y-px rounded-md shadow-sm">
-            <div>
-              <label htmlFor="email-address" className="sr-only">
-                Email address
-              </label>
-              <BsPersonFill/>
-              <input
+            
+            <Input 
+              id = "email"
+              type = "email"
+              autoComplete = "email"
+              required
+              touched = {touched.email}
+              error = {errors.email}
+              {...getFieldProps("email")}
+              placeholder = "Email"
+              className = "rounded-b-none"
+            />
               
-                id="email-address"
-                name="email"
-                type="email"
-                value = {myForm.values.email}
-                onChange = {myForm.handleChange}
-                onBlur = {myForm.handleBlur}
-                autoComplete="email"
-                className="relative inline-block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border rounded-none appearance-none b border-bottom-1z rounded-t-md focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                placeholder="Username"
-              />
-            </div>
-            {myForm.touched.email && <div className = "text-red-600">{myForm.errors.email}</div>}
-            <div className = "pt-6">
-              <label htmlFor="password" className="sr-only">
-                Password
-              </label>
-              
-              <input
-                id="password"
-                name="password"
-                type="password"
-                autoComplete="current-password"
-                required
-                value = {myForm.values.password}
-                onChange = {myForm.handleChange}
-                onBlur = {myForm.handleBlur}
-                className="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="Password"
-              />
-            </div>
-            {myForm.touched.password && <div className = "text-red-600">{myForm.errors.password}</div>}
+            <Input 
+              id = "password"
+              type = "password"
+              autoComplete = "current-password"
+              required
+              touched = {touched.password}
+              error = {errors.password}
+              {...getFieldProps("password")}
+              placeholder = "Password"
+              className = "rounded-t-none"
+            />
           </div>
           <div className="flex items-center justify-between">
             <div className="flex items-center">
@@ -110,7 +102,7 @@ const Login: FC<Props> = (props) =>{
               </span>
               Sign in
             </button>
-            {myForm.isSubmitting && <FaSpinner className = "mt-5 animate-spin"/>}
+            {isSubmitting && <FaSpinner className = "mt-5 animate-spin"/>}
           </div>
         </form>
       </div>
