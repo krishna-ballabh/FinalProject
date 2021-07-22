@@ -1,4 +1,3 @@
-
 import { ButtonHTMLAttributes } from "react";
 import {FC} from "react";
 import { IconType } from "react-icons";
@@ -11,7 +10,7 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement>{
     Icon?: IconType;
 }
 
-export const Button: FC<Props> = ({children,className ,Icon, themeClasses, theme,...rest}) => {
+export const OutlineButto: FC<Props> = ({children,className ,Icon, themeClasses, theme,...rest}) => {
   if(theme==="indigo"){
     themeClasses="bg-indigo-700 focus:ring-indigoish";
 }else if(theme==="gray"){
@@ -31,7 +30,7 @@ export const Button: FC<Props> = ({children,className ,Icon, themeClasses, theme
     return(
         <button
               {...rest}
-              className={"relative flex justify-center w-32 px-4 py-2 text-sm font-medium text-white  hover:shadow-none ease-in-duration-200 border border-transparent rounded-md group  focus:outline-none focus:ring-2 focus:ring-offset-2 "+themeClasses +" "+className}
+              className={" rounded-md  px-4 py-2  text-sm border duration-200  hover:shadow-xl ease-in-out hover:text-white hover:transform"+themeClasses +" "+className}
             >
               {Icon && (<span className="absolute inset-y-0 left-0 flex items-center pl-3">
                 <Icon className={"w-5 h-5 " + iconThemeClasses} aria-hidden="true" />
@@ -41,6 +40,6 @@ export const Button: FC<Props> = ({children,className ,Icon, themeClasses, theme
     );
 };
 
-Button.defaultProps = {
+OutlineButto.defaultProps = {
     theme: 'indigo'
 }
