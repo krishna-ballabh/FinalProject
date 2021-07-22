@@ -1,6 +1,6 @@
 import {FC, InputHTMLAttributes, memo} from "react";
 interface Props extends InputHTMLAttributes<HTMLInputElement>{
-  id:string;  
+  id?:string;  
   touched?: boolean;
     error?: string;
 }
