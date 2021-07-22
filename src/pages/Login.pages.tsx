@@ -47,7 +47,7 @@ const Login: FC<Props> = (props) =>{
         <form className="pt-8 space-y-6"
         onSubmit = {handleSubmit}>
           <input type="hidden" name="remember" defaultValue="true" />
-          <div className="-space-y-px rounded-md shadow-sm">
+          <div className="space-y-px rounded-md shadow-sm">
             
             <Input 
               id = "email"
@@ -57,8 +57,8 @@ const Login: FC<Props> = (props) =>{
               touched = {touched.email}
               error = {errors.email}
               {...getFieldProps("email")}
-              placeholder = "Email"
-              className = "rounded-b-none"
+              placeholder = "Username"
+              className = "rounded-b-none pt-7"
             />
               
             <Input 
@@ -70,7 +70,7 @@ const Login: FC<Props> = (props) =>{
               error = {errors.password}
               {...getFieldProps("password")}
               placeholder = "Password"
-              className = "rounded-t-none"
+              className = "rounded-t-none pt-7"
             />
           </div>
           <div className="flex items-center justify-between">
@@ -94,7 +94,7 @@ const Login: FC<Props> = (props) =>{
           </div>
 
           <div>
-            <Button> Sign in  </Button>
+            <Button theme = "secondary"> Sign in  </Button>
             {isSubmitting && <FaSpinner className = "mt-5 animate-spin"/>}
           </div>
         </form>

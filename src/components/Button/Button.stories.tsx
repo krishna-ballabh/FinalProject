@@ -8,7 +8,7 @@ export default {
     component: Button
 } as Meta;
 
-export const Hello: React.VFC<{}> = (args:any) => 
-    <Button {...args}  theme = "primary">
+export const main: React.VFC<{}> = (args:any) => 
+    <Button {...args}  >
         Sign in
-    </Button>
+    </Button>;

@@ -15,7 +15,7 @@ const Input: FC<Props> = ({touched, error, className,placeholder,id, ...rest}) =
               <input
               id = {id}
                 {...rest}
-                className={"relative inline-block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border rounded-none appearance-none b border-bottom-1z rounded-t-md focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" + className}
+                className={"w-full pb-2 pl-8 placeholder-gray-400 border-b-2 outline-none" + className}
                 placeholder = {placeholder} 
               />
             </div>
