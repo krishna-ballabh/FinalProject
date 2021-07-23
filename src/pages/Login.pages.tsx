@@ -101,6 +101,7 @@ const Login: FC<Props> = (props) =>{
           </div>
           <Button
             type="submit"
+            look = "solid"
             className="px-4 py-2 text-sm text-white bg-indigo-500 rounded-md shadow-xl hover:transform"
           >
             Log in

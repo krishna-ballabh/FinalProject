@@ -15,9 +15,8 @@ const Alert = {
 export const AlertLine = (args:any) => <Alerts {...args}></Alerts>
 
 AlertLine.args = {
-    strong: "Primary!",
     children: "Lorem ipsum is sample text",
     className:"",
-    theme:"indigo"
+    theme:"Primary"
 };
 export default Alert;

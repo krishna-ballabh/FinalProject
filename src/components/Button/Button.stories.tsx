@@ -2,7 +2,6 @@ import { Button } from "./Button";
 import "../../index.css";
 import { Meta } from "@storybook/react";
 import LockClosedIcon from "@heroicons/react/outline/LockClosedIcon";
-import { OutlineButto } from "./OutlineButto";
 const Solid =  {
     title: "My Awesome Button",
     component: Button,
@@ -23,7 +22,7 @@ main.args = {
     children: "Sign in",
     type: "submit",
     className: "",
-    Icon: LockClosedIcon,
+    look:"solid",
     theme: "indigo"
 }
 
