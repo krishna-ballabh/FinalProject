@@ -30,7 +30,7 @@ export const Progress: FC<Props> = ({style,className,counter, theme}) =>{
     }else if(theme === "red"){
         themeClasses = "bg-red-500";
     }else if(theme === "grey"){
-        themeClasses = "bg-grey-500";
+        themeClasses = "bg-gray-500";
     }
 
     return(

@@ -21,7 +21,7 @@ export const AvtarsStack: FC<Props> = ({profiles,className}) => {
           const distance = index * 8;
           if (index < 4) {
             return (
-              <Avtar src={child} className={"transition duration-300 transform hover:-translate-y-1 shadow-lg border border-white  absolute left-" + distance} />
+              <Avtar src={child} className={"transition duration-300 transform hover:-translate-y-1 shadow-lg border border-white  absolute left-" + distance} style = {{left:distance}}/>
             );
           }
           if (index > 3) {
