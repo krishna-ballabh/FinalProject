@@ -7,6 +7,7 @@ import * as yup from "yup";
 import { Switch } from "@headlessui/react";
 import {Button} from "../components/Button/Button";
 import Input from "../components/Input/Input";
+import { login } from "../api";
 
 interface Props{}
 
@@ -31,11 +32,9 @@ const Login: FC<Props> = (props) =>{
         password: yup.string().required().min(8),
      }),
      onSubmit: (data) => {
-        console.log("form submitting", data);
-        setTimeout(() =>{
-          console.log("form submitted successfully");
+        login(data).then(() => {
           history.push("/dashboard");
-        }, 5000);
+        })
      }
    });
     return(
