@@ -3,14 +3,16 @@ import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import AuthPages from './pages/Auth.pages';
 import AppContainerPages from './pages/AppContainer.pages';
 import NotFound from './pages/NotFound';
+import { LS_LOGIN_TOKEN } from './api';
 
 function App() {
+  const token = localStorage.getItem(LS_LOGIN_TOKEN);
   return (
+    
     <BrowserRouter>
       <Switch>
-        
         <Route path = "/" exact>
-          <Redirect to = "/login"></Redirect>
+          {token ? <Redirect to = "/dashboard"/> : <Redirect to = "/login"/>}
         </Route>
         <Route path = {["/login","/signup"]}>
           <AuthPages></AuthPages>

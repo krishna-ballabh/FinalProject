@@ -22,7 +22,7 @@ const Dashboard: FC<Props> = (props) =>{
        <Input  placeholder="search" onChange={(event) => setQuery(event.target.value)} />
        {user.map((profile) =>{
            return (
-               <div className="flex border rounded-sm w-96 bg-gray-50 hover:bg-gray-200 h-14">
+               <div className="flex w-full border rounded-sm bg-gray-50 hover:bg-gray-200 h-14">
                    <img alt="" src="https://static.toiimg.com/thumb/resizemode-4,msid-76729750,imgsize-249247,width-720/76729750.jpg" className="object-cover w-12 h-10 mt-2 mr-2 rounded-full" />
                    <div>
                    <p className="font-medium">{profile.name}</p>
