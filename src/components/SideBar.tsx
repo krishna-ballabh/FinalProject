@@ -1,6 +1,7 @@
 import {FC, memo} from "react";
 import { useHistory } from "react-router-dom";
-import { logout } from "../api";
+import { logout } from "../api/auth";
+
 import { Button } from "./Button/Button";
 interface Props{}
 

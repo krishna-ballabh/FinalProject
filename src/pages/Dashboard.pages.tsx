@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import {FC, memo} from "react";
 import { Link } from "react-router-dom";
-import { Datum, fetchGroups } from "../api";
+import { Datum, fetchGroups } from "../api/group";
 import Input from "../components/Input/Input";
 
 interface Props{}
@@ -11,12 +11,11 @@ const Dashboard: FC<Props> = (props) =>{
     const [query,setQuery] = useState("");
    useEffect(() => {
        fetchGroups( {status: "all-groups" , query:query}).then((data) => {
-           setUser(data.data);
+           setUser(data);
        });
    }, [query]);
    
    return (
-       
        <div>
            This is a dashboard <Link to="/recording"><span className="text-indigo-400 hover:underline">Got to Recordings</span></Link>
        <Input  placeholder="search" onChange={(event) => setQuery(event.target.value)} />
