@@ -1,12 +1,10 @@
 import {FC, memo} from "react";
-import { useHistory } from "react-router-dom";
 import { logout } from "../api/auth";
 
 import { Button } from "./Button/Button";
 interface Props{}
 
 const SideBar: FC<Props> = (props) =>{
-    const history = useHistory();
     return(
         <div>
         <div className = "h-full pl-0 bg-gray-800 w-80">

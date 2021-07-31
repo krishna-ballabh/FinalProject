@@ -39,7 +39,7 @@ const Login: FC<Props> = (props) =>{
      }
    });
     return(
-        <div className="flex justify-center min-h-screen px-4 py-12 sm:w-full md:w-1/2 bg-gray-50 sm:px-6 lg:px-8">
+        <div className="flex justify-center min-h-screen px-4 py-12 bg-white sm:w-full md:w-1/2 sm:px-6 lg:px-8">
       <div className="w-full max-w-md space-y-8">
         <div>
           <h2 className="mt-6 text-4xl text-center text-gray-900">Log In to <span className = "font-semibold text-blue-500">CODEYOGI</span></h2>

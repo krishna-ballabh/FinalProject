@@ -18,7 +18,13 @@ const Dashboard: FC<Props> = (props) =>{
    return (
        <div>
            This is a dashboard <Link to="/recording"><span className="text-indigo-400 hover:underline">Got to Recordings</span></Link>
-       <Input  placeholder="search" onChange={(event) => setQuery(event.target.value)} />
+
+       <Input  placeholder="search" onChange={
+           (event) => setQuery(event.target.value)
+           } 
+           />
+
+       
        {user.map((profile) =>{
            return (
                <div className="flex w-full border rounded-sm bg-gray-50 hover:bg-gray-200 h-14">
