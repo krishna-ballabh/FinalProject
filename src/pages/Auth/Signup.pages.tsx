@@ -4,10 +4,10 @@ import { FiLock, FiUser } from "react-icons/fi";
 import { ImSpinner9 } from "react-icons/im";
 import { Link, useHistory } from "react-router-dom";
 import * as yup from "yup";
-import Input from "../components/Input/Input";
+import Input from "../../components/Input/Input";
 import { HiOutlineAtSymbol } from "react-icons/hi";
 import { Switch } from "@headlessui/react";
-import { Button } from "../components/Button/Button";
+import { Button } from "../../components/Button/Button";
 
 interface Props {}
 

@@ -2,11 +2,9 @@ import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import NotFound from './pages/NotFound';
 import { AUTH_TOKEN } from './api/base';
 import { lazy, Suspense } from 'react';
+import AppContainerPageLazy from "./pages/AppContainer/AppContainer.lazy"
 import { FaSpinner } from 'react-icons/fa';
-
-const AppContainerPageLazy = lazy(() => import("./pages/AppContainer.pages"));
-
-const AuthPageLazy = lazy(() => import("./pages/Auth.pages"));
+import AuthLazy from './pages/Auth/Auth.lazy';
 
 function App() {
   const token = localStorage.getItem(AUTH_TOKEN );
@@ -18,7 +16,7 @@ function App() {
           {token ? <Redirect to = "/dashboard"/> : <Redirect to = "/login"/>}
         </Route>
         <Route path = {["/login","/signup"]} exact>
-          {token? <Redirect to = "/dashboard" /> : (<AuthPageLazy></AuthPageLazy>)}
+          {token? <Redirect to = "/dashboard" /> : (<AuthLazy></AuthLazy>)}
         </Route>
         <Route path = {["/recordings","/dashboard"]} exact>
           
