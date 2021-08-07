@@ -5,7 +5,6 @@ import { User } from "../../models/User";
 import LoginPages from "./Login.pages";
 import SignupPages from "./Signup.pages";
 interface Props{
-    onLogin: (user: User) => void;
 }
 
 const Auth: FC<Props> = (props) =>{
@@ -13,7 +12,7 @@ const Auth: FC<Props> = (props) =>{
         <div className = "flex flex-row justify-between">
             <Switch>
                 <Route path = "/login">
-                    <LoginPages onLogin = {props.onLogin}/>
+                    <LoginPages/>
                 </Route>
                 <Route path =  "/signup">
                     <SignupPages></SignupPages>

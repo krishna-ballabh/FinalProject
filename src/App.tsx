@@ -1,7 +1,7 @@
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import NotFound from './pages/NotFound';
 import { AUTH_TOKEN } from './api/base';
-import { FC,  Suspense } from 'react';
+import { FC,  Suspense, useMemo } from 'react';
 import AppContainerPageLazy from "./pages/AppContainer/AppContainer.lazy"
 import { FaSpinner } from 'react-icons/fa';
 import AuthLazy from './pages/Auth/Auth.lazy';
@@ -10,6 +10,7 @@ import { User } from './models/User';
 import { useEffect } from 'react';
 import { me } from './api/auth';
 import AppContext from './App.context';
+import NavBar from './components/NavBar';
 
 interface Props{}
 
@@ -25,30 +26,34 @@ const App: FC<Props> = () =>  {
       return;
     }
 
-    me().then((u) => setUser(u));
-    console.log(user);
+    me().then((u) => setUser(u)); 
   }, []);
 
-  if(!user && token){
+  const data = useMemo(() => {
+    return {user,setUser};
+  }, [user,setUser]);
+ 
+
+  if(token && !user){
     return <div> loding....</div>
   }
+  console.log(user?.first_name);
 
-    console.log(user);
+  
   return (
-    <AppContext.Provider value = ({user, setUser})>
-    
+    <AppContext.Provider value = {data}>
     <Suspense fallback = {<div className = "text-red-500 "><FaSpinner className  = "animate-spin"/>loading..</div>}>
     <BrowserRouter>
       <Switch>
         <Route path = "/" exact>
-          {user? <Redirect to = "/dashboard"/> : <Redirect to = "/login"/>}
+          {user ? <Redirect to = "/dashboard"/> : <Redirect to = "/login"/>}
         </Route>
         <Route path = {["/login","/signup"]} exact>
-          {user? <Redirect to = "/dashboard" /> : (<AuthLazy onLogin = {setUser}></AuthLazy>)}
+          {user ? <Redirect to = "/dashboard" /> : (<AuthLazy></AuthLazy>)}
         </Route>
         <Route path = {["/recordings","/dashboard"]} exact>
-          
-            {user? <AppContainerPageLazy user = {user!}/> : <Redirect to = "/login" />}
+            <NavBar user = {user!}></NavBar>
+            {user ? <AppContainerPageLazy/> : <Redirect to = "/login" />}
          
         </Route>
         <Route>

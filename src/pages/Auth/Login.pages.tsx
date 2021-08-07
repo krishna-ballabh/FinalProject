@@ -8,12 +8,18 @@ import { Switch } from "@headlessui/react";
 import {Button} from "../../components/Button/Button";
 import Input from "../../components/Input/Input";
 import { login } from "../../api/auth";
+import { User } from "../../models/User";
+import { useContext } from "react";
+import AppContext from "../../App.context";
 
 
-interface Props{}
+interface Props{
+}
 
 const Login: FC<Props> = (props) =>{
   const history = useHistory();
+
+  const {setUser} = useContext(AppContext);
   
   const [isShow, setShow] = useState(false);
 
@@ -33,7 +39,8 @@ const Login: FC<Props> = (props) =>{
         password: yup.string().required().min(8),
      }),
      onSubmit: (data) => {
-        login(data).then(() => {
+        login(data).then((u) => {
+          setUser(u);
           history.push("/dashboard");
         })
      }
