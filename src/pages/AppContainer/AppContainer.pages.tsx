@@ -4,10 +4,12 @@ import SideBar from "../../components/SideBar";
 import { User } from "../../models/User";
 import DashboardPages from "./Dashboard.pages";
 import RecordingsPages from "./Recordings.pages";
+import ProfilePage from "../Profile.pages";
 interface Props{
+    user:User;
 }
 
-const AppContainer: FC<Props> = (props) =>{
+const AppContainer: FC<Props> = ({user}) =>{
      return(
         <div className = "flex flex-row">
             <SideBar></SideBar>
@@ -18,6 +20,9 @@ const AppContainer: FC<Props> = (props) =>{
             <Route path  = "/recordings">
                 <RecordingsPages />
             </Route>
+            <Route path="/profile">
+            <ProfilePage user= {user} />
+          </Route>
         </Switch>
         
         </div>

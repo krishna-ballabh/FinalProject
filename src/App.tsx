@@ -51,9 +51,9 @@ const App: FC<Props> = () =>  {
         <Route path = {["/login","/signup"]} exact>
           {user ? <Redirect to = "/dashboard" /> : (<AuthLazy></AuthLazy>)}
         </Route>
-        <Route path = {["/recordings","/dashboard"]} exact>
+        <Route path = {["/recordings","/dashboard", "/profile"]} exact>
             <NavBar user = {user!}></NavBar>
-            {user ? <AppContainerPageLazy/> : <Redirect to = "/login" />}
+            {user ? <AppContainerPageLazy user = {user}/> : <Redirect to = "/login" />}
          
         </Route>
         <Route>
