@@ -39,10 +39,9 @@ const Login: FC<Props> = (props) =>{
         password: yup.string().required().min(8),
      }),
      onSubmit: (data) => {
-        login(data).then((u) => {
-          setUser(u);
+        
           history.push("/dashboard");
-        })
+        
      }
    });
     return(
